@@ -200,7 +200,7 @@ class PixelDisplacementEffect {
 
 //init
 document.addEventListener('DOMContentLoaded', () => {
-    const effect = new PixelDisplacementEffect('webgl-home', '../img_/bg.jpg');
+    const effect = new PixelDisplacementEffect('webgl-home', 'img_/bg.jpg');
 
     let resizeTimeout;
     window.addEventListener('resize', () => {
