@@ -1,0 +1,15 @@
+pages:
+  stage: deploy
+  script:
+    - mkdir .public
+
+    - cp -r templates/* .public/
+
+    - cp -r styles js img_ .public/
+
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
