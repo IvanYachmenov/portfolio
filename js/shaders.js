@@ -10,7 +10,7 @@ class PixelDisplacementEffect {
         this.particles = [];
         this.mouse = { x: -100, y: -100 };
         this.isActive = false;
-        this.gridSize = 4; // Меньшие пиксели для более детального эффекта
+        this.gridSize = 4;
 
         this.init();
     }
@@ -18,10 +18,8 @@ class PixelDisplacementEffect {
     init() {
         if (!this.container) return;
 
-        // Очищаем контейнер
         this.container.innerHTML = '';
 
-        // Создаем основной canvas для фонового изображения (всегда высокого качества)
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.canvas.style.position = 'absolute';
@@ -31,7 +29,6 @@ class PixelDisplacementEffect {
         this.canvas.style.height = '100%';
         this.container.appendChild(this.canvas);
 
-        // Создаем overlay canvas для эффекта частиц
         this.overlayCanvas = document.createElement('canvas');
         this.overlayCtx = this.overlayCanvas.getContext('2d');
         this.overlayCanvas.style.position = 'absolute';
@@ -39,16 +36,15 @@ class PixelDisplacementEffect {
         this.overlayCanvas.style.left = '0';
         this.overlayCanvas.style.width = '100%';
         this.overlayCanvas.style.height = '100%';
-        this.overlayCanvas.style.pointerEvents = 'none'; // Мышь проходит сквозь overlay
+        this.overlayCanvas.style.pointerEvents = 'none'; //
         this.container.appendChild(this.overlayCanvas);
 
-        // Загружаем изображение
         this.img = new Image();
         this.img.crossOrigin = 'anonymous';
         this.img.onload = () => {
             this.setupCanvases();
             this.createParticles();
-            this.renderBackground(); // Рендерим качественное фоновое изображение
+            this.renderBackground();
         };
         this.img.src = this.imageUrl;
 
@@ -60,21 +56,19 @@ class PixelDisplacementEffect {
         const width = this.container.offsetWidth;
         const height = this.container.offsetHeight;
 
-        // Настраиваем основной canvas (высокое качество)
         this.canvas.width = width * dpr;
         this.canvas.height = height * dpr;
         this.canvas.style.width = width + 'px';
         this.canvas.style.height = height + 'px';
         this.ctx.scale(dpr, dpr);
-        this.ctx.imageSmoothingEnabled = true; // Включаем сглаживание для качества
+        this.ctx.imageSmoothingEnabled = true;
 
-        // Настраиваем overlay canvas (для эффекта)
         this.overlayCanvas.width = width * dpr;
         this.overlayCanvas.height = height * dpr;
         this.overlayCanvas.style.width = width + 'px';
         this.overlayCanvas.style.height = height + 'px';
         this.overlayCtx.scale(dpr, dpr);
-        this.overlayCtx.imageSmoothingEnabled = false; // Отключаем для пиксельного эффекта
+        this.overlayCtx.imageSmoothingEnabled = false;
     }
 
     createParticles() {
@@ -82,7 +76,6 @@ class PixelDisplacementEffect {
         const width = this.container.offsetWidth;
         const height = this.container.offsetHeight;
 
-        // Используем основное изображение для получения цветов
         this.ctx.drawImage(this.img, 0, 0, width, height);
 
         for (let y = 0; y < height; y += this.gridSize) {
@@ -157,16 +150,15 @@ class PixelDisplacementEffect {
     }
 
     renderBackground() {
-        // Всегда рендерим качественное фоновое изображение
+
         this.ctx.clearRect(0, 0, this.container.offsetWidth, this.container.offsetHeight);
         this.ctx.drawImage(this.img, 0, 0, this.container.offsetWidth, this.container.offsetHeight);
     }
 
     renderParticles() {
-        // Очищаем только overlay
+
         this.overlayCtx.clearRect(0, 0, this.container.offsetWidth, this.container.offsetHeight);
 
-        // Рендерим только те частицы, которые смещены от исходной позиции
         this.particles.forEach(particle => {
             const dx = particle.x - particle.originalX;
             const dy = particle.y - particle.originalY;
@@ -185,7 +177,6 @@ class PixelDisplacementEffect {
     }
 
     resetParticles() {
-        // Просто очищаем overlay - фон остается качественным
         this.overlayCtx.clearRect(0, 0, this.container.offsetWidth, this.container.offsetHeight);
     }
 
@@ -207,7 +198,7 @@ class PixelDisplacementEffect {
     }
 }
 
-// Инициализация
+//init
 document.addEventListener('DOMContentLoaded', () => {
     const effect = new PixelDisplacementEffect('webgl-home', '../img_/bg.jpg');
 
