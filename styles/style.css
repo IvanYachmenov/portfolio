@@ -57,7 +57,7 @@ header {
     position: relative;
     min-height: 100vh;
     overflow: hidden;
-    background: #000;
+    background: url("../img_/bg.jpg");
 }
 
 #webgl-home {
