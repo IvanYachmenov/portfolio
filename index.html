@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Portfolio</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
     <body>
 
@@ -12,7 +12,7 @@
         <header>
             <nav id="navbar">
                 <ul>
-                    <li><a href="#home">HOME</a></li>
+                    <li><a href="#home" class="active">HOME</a></li>
                     <li><a href="#about">ABOUT</a></li>
                     <li><a href="#portfolio">PORTFOLIO</a></li>
                     <li><a href="#contacts">CONTACTS</a></li>
@@ -20,139 +20,26 @@
             </nav>
         </header>
 
-        <main>
-            <section id="home" class="fullscreen-panel">
-                <div id="webgl-home"></div>
-                <div class="home-overlay">
-                    <h1>Ivan Yachmenov | Full-Stack Developer</h1>
-                </div>
-            </section>
-
-            <section id="about" class="fullscreen-panel">
-
-                <div class="about-container">
-                    <img src="img_/profile_img.jpg" alt="My profile photo">
-
-                    <div class="about-content">
-                        <h2>About me</h2>
-                        <p>Hi, I'm Ivan Yachmenov. I'm 3rd year Computer Science student at Slovak University of Technology. My speciality is Applied Informatics - Security of Information Technologies. Eager to learn - it's about me. I am looking for new opportunities.</p>
-
-                        <div class="skills-grid">
-                            <div class="skill-category">
-                                <h3>Hard skills</h3>
-                                <h4>Programming languages</h4>
-                                <ul>
-                                    <li><b>Python:</b> Advanced proficiency, experience with object-oriented programming, AST, built-in modules, experience of back-end development
-                                        <ul>
-                                            <li>FastAPI</li>
-                                            <li>Django</li>
-                                            <li>Flask</li>
-                                        </ul>
-                                    </li>
-                                    <li><b>JavaScript: Upper-Intermediate proficiency</b>
-                                        <ul>
-                                            <li>React: Upper-Intermediate proficiency</li>
-                                            <li>Angular: Intermediate proficiency</li>
-                                            <li>Node.js, Express.js</li>
-                                        </ul>
-                                    </li>
-                                    <li><b>HTML: Advanced proficiency</b></li>
-                                    <li><b>CSS: Intermediate proficiency</b></li>
-                                    <li><b>Java:</b> Intermediate proficiency, experience with object-oriented programming, encryption/decryption algorithms</li>
-                                    <li><b>C:</b> Intermediate proficiency, experience with medium-size university projects</li>
-                                    <li><b>C++:</b> experience with object-oriented programming</li>
-                                </ul>
-                                    
-                                    <!--<li><b>Typescript</b></li>-->
-                                    <!--<li><b>Vue.js</b></li>-->
-                        
-
-                                <h4>Databases</h4>
-                                <ul>
-                                    <!--<li><b>PostgreSQL</b></li>-->
-                                    <li><b>MySQL (PostgreSQL)</b></li>
-                                    <li><b>NoSQL (MongoDB)</b></li>
-                                </ul>
-
-                                <h4>Version control</h4>
-                                <ul>
-                                    <li><b>Git</b></li>
-                                </ul>
-                            </div>
-
-                            <div class="skill-category">
-                                <h3>Soft skills</h3>
-                                <h4>Languages</h4>
-                                <ul>
-                                    <li><b>English</b></li>
-                                    <li><b>Slovak</b></li>
-                                    <li><b>Ukrainian</b></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="portfolio" class="fullscreen-panel">
-                <h2>Portfolio</h2>
-                <div class="projects-column">
-                    <div class="project-capsule" data-project="fantastic-beings">
-                        <button class="open-window" style="display: none;"></button>
-                        <img src="img_/fantastic_beings.png" alt="Fantastic Beings">
-                        <div class="project-info">
-                            <h3>Fantastic Beings</h3>
-                            <p>Match-3 game (like Candy Crush) с JS, HTML, CSS</p>
-                        </div>
-                    </div>
-
-                    <div class="project-capsule" data-project="project2">
-                        <button class="open-window" style="display: none;"></button>
-                        <img src="img_/table_pic4.jpeg" alt="Project 2">
-                        <div class="project-info">
-                            <h3>Project Name 2</h3>
-                            <p>Description of second project</p>
-                        </div>
-                    </div>
-
-                    <div class="project-capsule" data-project="project3">
-                        <button class="open-window" style="display: none;"></button>
-                        <img src="img_/table_pic1.jpeg" alt="Project 3">
-                        <div class="project-info">
-                            <h3>Project Name 3</h3>
-                            <p>Description of third project</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <section id="contacts" class="contacts-section">
-                <h2>Contacts</h2>
-                <p>You can contact me at proivan809@gmail.com or phone number — +421 950 748 538</p>
-                <div class="social-links">
-                    <a href="https://github.com/IvanYachmenov" target="_blank"><img src="img_/github.png" alt="GitHub" title="GitHub"></a>
-                    <a href="https://www.linkedin.com/in/ivan-yachmenov-aba1bb379/" target="_blank"><img src="img_/linkedin.png" alt="LinkedIn" title="LinkedIn"></a>
-                    <a href="https://www.instagram.com/yachm.ivan/" target="_blank"><img src="img_/instagram.png" alt="Instagram" title="Instagram"></a>
-                </div>
-            </section>
-
-            <div class="footer-bottom">
-                <p>© 2025 (by ivan.yachm)</p>
-                <div class="credits">
-                    <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">Instagram icons created by Freepik - Flaticon</a>
-                    <a href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons">Linkedin icons created by riajulislam - Flaticon</a>
-                    <a href="https://www.flaticon.com/free-icons/github" title="github icons">Github icons created by Pixel perfect - Flaticon</a>
-                    <a href="https://www.flaticon.com/free-icons/github" title="github icons">Github icons created by Dave Gandy - Flaticon</a>
-                    <a href="https://www.flaticon.com/free-icons/demo" title="demo icons">Demo icons created by Freepik - Flaticon</a>
-                </div>
-            </div>
-        </footer>
+        <main></main>
         <div class="window popup-wrapper" style="display: none;">
             <div class="popup-content">
+                <button class="close-btn top-close">×</button>
                 <h2 class="popup-title">Title</h2>
-                <img src="" alt="" class="popup-img">
+                
+                <div class="gallery-container">
+                    <div class="gallery-viewport">
+                        <div class="gallery-track">
+                        </div>
+                    </div>
+                    <div class="gallery-controls">
+                        <button class="gallery-nav gallery-prev" aria-label="Previous">‹</button>
+                        <div class="gallery-indicator">
+                            <span class="gallery-current">1</span> / <span class="gallery-total">1</span>
+                        </div>
+                        <button class="gallery-nav gallery-next" aria-label="Next">›</button>
+                    </div>
+                </div>
+
                 <div class="popup-details">
                     <p><strong>Description:</strong> <span class="popup-desc"></span></p>
                     <p><strong>Technologies:</strong> <span class="popup-tech"></span></p>
@@ -160,11 +47,11 @@
 
                     <div class="popup-links">
                     <a href="#" target="_blank" class="github-link">
-                        <img src="img_/github-sign.png" alt="GitHub">
+                        <img src="media/assets/github-sign.png" alt="GitHub">
                         <span>GitHub</span>
                     </a>
                     <a href="#" target="_blank" class="demo-link">
-                        <img src="img_/demo.png" alt="Live Demo">
+                        <img src="media/assets/demo.png" alt="Live Demo">
                         <span>Live Demo</span>
                     </a>
                 </div>
@@ -175,5 +62,6 @@
     </body>
 
 <script type="module" src="js/shaders.js"></script>
+<script src="js/navigation.js"></script>
 <script src="js/popup.js"></script>
 </html>

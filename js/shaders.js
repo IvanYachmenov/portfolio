@@ -36,7 +36,7 @@ class PixelDisplacementEffect {
         this.overlayCanvas.style.left = '0';
         this.overlayCanvas.style.width = '100%';
         this.overlayCanvas.style.height = '100%';
-        this.overlayCanvas.style.pointerEvents = 'none'; //
+        this.overlayCanvas.style.pointerEvents = 'none';
         this.container.appendChild(this.overlayCanvas);
 
         this.img = new Image();
@@ -150,13 +150,11 @@ class PixelDisplacementEffect {
     }
 
     renderBackground() {
-
         this.ctx.clearRect(0, 0, this.container.offsetWidth, this.container.offsetHeight);
         this.ctx.drawImage(this.img, 0, 0, this.container.offsetWidth, this.container.offsetHeight);
     }
 
     renderParticles() {
-
         this.overlayCtx.clearRect(0, 0, this.container.offsetWidth, this.container.offsetHeight);
 
         this.particles.forEach(particle => {
@@ -197,16 +195,3 @@ class PixelDisplacementEffect {
         }
     }
 }
-
-//init
-document.addEventListener('DOMContentLoaded', () => {
-    const effect = new PixelDisplacementEffect('webgl-home', 'img_/bg.jpg');
-
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            effect.onResize();
-        }, 250);
-    });
-});
