@@ -195,3 +195,19 @@ class PixelDisplacementEffect {
         }
     }
 }
+<<<<<<< HEAD
+=======
+
+//init
+document.addEventListener('DOMContentLoaded', () => {
+    const effect = new PixelDisplacementEffect('webgl-home', 'img_/bg.jpg');
+
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            effect.onResize();
+        }, 250);
+    });
+});
+>>>>>>> 69642f6e2a1e5a3dc4837b402414655b2f2af1f0
