@@ -74,7 +74,7 @@ document.querySelectorAll('.project-capsule').forEach(capsule => {
         const projectData = projectsData[projectId];
 
         if (projectData) {
-            openPopup(projectData);
+            openPopup(projectData, projectId);
         }
     })
 })
@@ -82,7 +82,8 @@ document.querySelectorAll('.project-capsule').forEach(capsule => {
 let currentMediaIndex = 0;
 let currentProjectMedia = [];
 
-function openPopup(project) {
+function openPopup(project, projectId) {
+    if (projectId) sessionStorage.setItem('lastOpenProject', projectId);
     const popup = document.querySelector('.popup-wrapper');
     const popupTitle = popup.querySelector('.popup-title');
     const popupDesc = popup.querySelector('.popup-desc');
@@ -190,6 +191,7 @@ function prevMedia() {
 }
 
 function closePopup() {
+    sessionStorage.removeItem('lastOpenProject');
     const popup = document.querySelector('.popup-wrapper');
 
     popup.classList.remove('active');

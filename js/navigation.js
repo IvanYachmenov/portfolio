@@ -9,10 +9,14 @@ class Navigation {
 
     init() {
         this.setupNavigation();
-        this.loadSection('home');
-        const homeLink = document.querySelector('#navbar a[href="#home"]');
-        if (homeLink) this.updateActiveLink(homeLink);
-        if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
+        const hash = (window.location.hash || '#home').substring(1);
+        const sectionId = this.sections.includes(hash) ? hash : 'home';
+        if (!window.location.hash || !this.sections.includes(hash)) {
+            history.replaceState(null, '', window.location.pathname + '#' + sectionId);
+        }
+        this.loadSection(sectionId);
+        const link = document.querySelector(`#navbar a[href="#${sectionId}"]`);
+        if (link) this.updateActiveLink(link);
         this.setupHashChange();
     }
 
@@ -155,7 +159,7 @@ class Navigation {
                         const projectId = this.getAttribute('data-project');
                         const projectData = projectsData[projectId];
                         if (projectData) {
-                            openPopup(projectData);
+                            openPopup(projectData, projectId);
                         }
                     });
                 });
