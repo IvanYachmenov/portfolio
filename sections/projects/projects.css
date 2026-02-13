@@ -1,0 +1,239 @@
+/* Projects (Portfolio) section */
+#portfolio {
+    background: #5a3d2b;
+    padding: 120px 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    justify-content: flex-start;
+}
+
+.portfolio-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 60px;
+    background: #fff;
+    border: 3px solid #000;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+#portfolio h2 {
+    margin-bottom: 50px;
+    font-size: 2em;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    border-bottom: 3px solid #000;
+    padding-bottom: 15px;
+    text-align: left;
+}
+
+.projects-column {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: left;
+}
+
+.project-capsule {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    align-items: start;
+    padding: 0;
+    background: #fff;
+    border: 3px solid #000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.project-capsule:hover {
+    border-color: #000;
+    background: #f9f9f9;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.project-capsule img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    object-position: top center;
+    display: block;
+    border-right: 3px solid #000;
+    background: #f5f5f5;
+}
+
+.project-capsule.img-fit-width img {
+    height: auto;
+    min-height: 200px;
+    max-height: 380px;
+    object-fit: contain;
+    object-position: top center;
+}
+
+.project-capsule.img-fit-cover img {
+    object-fit: cover;
+    object-position: top center;
+}
+
+.project-capsule.project-disabled {
+    cursor: not-allowed;
+    position: relative;
+    pointer-events: none;
+}
+
+.project-capsule.project-disabled .project-disabled-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: auto;
+}
+
+.project-capsule.project-disabled:hover .project-disabled-overlay {
+    opacity: 1;
+}
+
+.project-capsule.project-disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.project-info {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-info h3 {
+    margin-bottom: 15px;
+    color: #1a1a1a;
+    font-size: 1.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-info p {
+    color: #333;
+    line-height: 1.8;
+    font-size: 0.95em;
+}
+
+@media (max-width: 1024px) {
+    .portfolio-container {
+        max-width: 1200px;
+    }
+
+    .project-capsule {
+        grid-template-columns: 1fr;
+    }
+
+    .project-capsule img {
+        border-right: none;
+        border-bottom: 3px solid #000;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-info {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    #portfolio {
+        padding: 90px 12px 30px;
+    }
+
+    .portfolio-container {
+        padding: 24px 16px 30px;
+        margin: 0 8px;
+    }
+
+    #portfolio h2 {
+        font-size: 1.4em;
+        margin-bottom: 30px;
+    }
+
+    .projects-column {
+        gap: 28px;
+    }
+
+    .project-capsule {
+        gap: 0;
+    }
+
+    .project-capsule img {
+        height: 200px;
+        min-height: 160px;
+        max-height: 220px;
+    }
+
+    .project-capsule.img-fit-width img {
+        min-height: 160px;
+        max-height: 280px;
+    }
+
+    .project-info {
+        padding: 24px 20px;
+    }
+
+    .project-info h3 {
+        font-size: 1.15em;
+        margin-bottom: 10px;
+    }
+
+    .project-info p {
+        font-size: 0.95em;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 360px) {
+    #portfolio {
+        padding: 80px 8px 24px;
+    }
+
+    .portfolio-container {
+        padding: 20px 12px 24px;
+        margin: 0 4px;
+    }
+
+    #portfolio h2 {
+        font-size: 1.2em;
+    }
+
+    .project-capsule img {
+        height: 180px;
+        min-height: 140px;
+    }
+
+    .project-info {
+        padding: 20px 16px;
+    }
+
+    .project-info h3 {
+        font-size: 1.05em;
+    }
+
+    .project-info p {
+        font-size: 0.9em;
+    }
+}

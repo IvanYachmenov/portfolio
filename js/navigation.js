@@ -10,6 +10,9 @@ class Navigation {
     init() {
         this.setupNavigation();
         this.loadSection('home');
+        const homeLink = document.querySelector('#navbar a[href="#home"]');
+        if (homeLink) this.updateActiveLink(homeLink);
+        if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
         this.setupHashChange();
     }
 
@@ -22,13 +25,16 @@ class Navigation {
                 const sectionId = link.getAttribute('href').substring(1);
                 this.loadSection(sectionId);
                 this.updateActiveLink(link);
+                history.pushState(null, '', '#' + sectionId);
             });
         });
     }
 
     async loadSection(sectionId) {
+        const paths = { home: 'home/home', about: 'about/about', portfolio: 'projects/projects', contacts: 'contacts/contacts' };
+        const path = paths[sectionId] || sectionId;
         try {
-            const response = await fetch(`sections/${sectionId}.html`);
+            const response = await fetch(`sections/${path}.html`);
             const html = await response.text();
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = html;
@@ -53,12 +59,7 @@ class Navigation {
             }
             
             if (footer && sectionId === 'contacts') {
-                const section = document.getElementById('contacts');
-                if (section) {
-                    section.appendChild(footer);
-                } else {
-                    document.body.appendChild(footer);
-                }
+                document.body.appendChild(footer);
                 setTimeout(() => {
                     footer.classList.add('active');
                 }, 10);
@@ -149,6 +150,7 @@ class Navigation {
             if (capsules.length > 0 && typeof openPopup !== 'undefined') {
                 capsules.forEach(capsule => {
                     capsule.addEventListener('click', function(e) {
+                        if (this.classList.contains('project-disabled')) return;
                         if (e.target.classList.contains('open-window')) return;
                         const projectId = this.getAttribute('data-project');
                         const projectData = projectsData[projectId];
@@ -181,16 +183,6 @@ class Navigation {
             }
         });
 
-        if (window.location.hash) {
-            const hash = window.location.hash.substring(1);
-            if (this.sections.includes(hash)) {
-                this.loadSection(hash);
-                const link = document.querySelector(`#navbar a[href="#${hash}"]`);
-                if (link) {
-                    this.updateActiveLink(link);
-                }
-            }
-        }
     }
 }
 

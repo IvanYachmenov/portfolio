@@ -1,0 +1,96 @@
+/* Home section */
+#home {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    background: url("../../media/assets/bg.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+#webgl-home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+#webgl-home.shader-ready {
+    opacity: 1;
+}
+
+#webgl-home canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.home-overlay {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    pointer-events: none;
+}
+
+.home-overlay h1,
+.home-overlay a {
+    pointer-events: auto;
+}
+
+.home-overlay h1 {
+    font-size: clamp(1.8em, 4vw, 3em);
+    margin-bottom: 30px;
+    font-weight: 400;
+    padding: 30px 50px;
+    border: 3px solid #fff;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    backdrop-filter: blur(5px);
+}
+
+.cv-download-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+    text-decoration: none;
+    border: 3px solid #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.cv-download-btn:hover {
+    background: #000;
+    color: #fff;
+    border-color: #fff;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .home-overlay h1 {
+        padding: 30px 40px;
+        font-size: 2em;
+    }
+}

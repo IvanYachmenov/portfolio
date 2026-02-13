@@ -177,6 +177,8 @@ header {
 
 #home {
     position: relative;
+    width: 100%;
+    height: 100vh;
     min-height: 100vh;
     overflow: hidden;
     background: url("../media/assets/bg.jpg") no-repeat center center;
@@ -191,6 +193,12 @@ header {
     height: 100%;
     z-index: 1;
     pointer-events: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+#webgl-home.shader-ready {
+    opacity: 1;
 }
 
 #webgl-home canvas {
@@ -518,9 +526,56 @@ header {
 .project-capsule img {
     width: 100%;
     height: 250px;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: top center;
     display: block;
     border-right: 3px solid #000;
+    background: #f5f5f5;
+}
+
+.project-capsule.img-fit-width img {
+    height: auto;
+    min-height: 200px;
+    max-height: 380px;
+    object-fit: contain;
+    object-position: top center;
+}
+
+.project-capsule.img-fit-cover img {
+    object-fit: cover;
+    object-position: top center;
+}
+
+.project-capsule.project-disabled {
+    cursor: not-allowed;
+    position: relative;
+    pointer-events: none;
+}
+
+.project-capsule.project-disabled .project-disabled-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: auto;
+}
+
+.project-capsule.project-disabled:hover .project-disabled-overlay {
+    opacity: 1;
+}
+
+.project-capsule.project-disabled:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 .project-info {
@@ -812,6 +867,12 @@ footer .footer-bottom {
     padding: 0;
 }
 
+.gallery-media-constrained {
+    max-height: 400px;
+    width: 100%;
+    object-fit: contain;
+}
+
 .gallery-controls {
     display: flex;
     align-items: center;
@@ -1028,7 +1089,8 @@ footer .footer-bottom {
     }
     
     .contacts-container {
-        max-width: 1200px;
+        max-width: 100%;
+        padding: 40px 24px;
     }
     
     .project-capsule {

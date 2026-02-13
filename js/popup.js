@@ -18,36 +18,49 @@ const projectsData = {
             { type: 'image', src: 'media/projects/p1/settings_page.png' },
             { type: 'image', src: 'media/projects/p1/login_page.png' },
             { type: 'image', src: 'media/projects/p1/nav.png' },
-            { type: 'video', src: 'media/projects/p1/tutor_100mb.mp4' }
+            { type: 'video', src: 'media/projects/p1/demo.mp4' }
         ],
-        description: 'Full-stack online learning platform developed using Feature-Sliced Design architecture. The application provides comprehensive course management, user authentication with OAuth 2.0 social login, and interactive learning features. Built with modern web technologies focusing on clean code principles and scalable architecture.',
-        technologies: 'React, TypeScript, Django REST Framework, Django-allauth, JWT Authentication, MySQL',
-        features: 'User authentication and authorization, OAuth 2.0 social login, course management system, interactive learning modules, real-time progress tracking, responsive design, RESTful API',
+        description: 'Full-stack e-learning platform (React, Django REST Framework, PostgreSQL, OAuth 2.0) with course enrollment, different types of test questions and timed/untimed quizzes. Role-based access for student/teacher workflows, progress and attempt history tracking, media uploads, profile and UI customization. Developed using Feature-Sliced Design.',
+        technologies: 'React, TypeScript, Django REST Framework, Django-allauth, JWT Authentication, PostgreSQL',
+        features: 'Role-based access (student/teacher), course enrollment, timed/untimed quizzes, progress tracking, attempt history, media uploads, profile customization, OAuth 2.0 social login',
         github: 'https://github.com/IvanYachmenov/elearning_app',
         demo: '#'
     },
     'code-sharing': {
         title: 'Code Sharing Platform',
         media: [
-            { type: 'image', src: 'media/assets/table_pic2.jpeg' },
-            { type: 'image', src: 'media/assets/table_pic4.jpeg' },
-            { type: 'image', src: 'media/assets/table_pic1.jpeg' }
+            { type: 'image', src: 'media/projects/p2/code_sharing_home.png' },
+            { type: 'image', src: 'media/projects/p2/code_sharing_create.png' },
+            { type: 'image', src: 'media/projects/p2/code_sharing_snippet.png' },
+            { type: 'image', src: 'media/projects/p2/code_sharing_view_latests.png' },
+            { type: 'image', src: 'media/projects/p2/code_sharing_api_test.png' },
+            { type: 'video', src: 'media/projects/p2/demo.mp4' }
         ],
-        description: 'Collaborative platform for developers to share, review, and discuss code snippets. Features real-time collaboration, syntax highlighting, version control integration, and community-driven code reviews. Designed to facilitate knowledge sharing and code quality improvement.',
-        technologies: 'React, TypeScript, Node.js, WebSocket, MongoDB, Git Integration',
-        features: 'Real-time code sharing, syntax highlighting, code review system, version control integration, user profiles, search and filtering, comments and discussions',
+        description: 'Modern web application for sharing code snippets via UUID links with optional time-based and view-based restrictions. Includes a "latest snippets" feed and API health check. Clean REST API with layered backend structure and responsive Angular UI. In-memory H2 database.',
+        technologies: 'Angular, TypeScript, Spring Boot, H2',
+        features: 'UUID-based sharing, time/view restrictions, latest snippets feed, API health check, layered backend, responsive UI',
         github: 'https://github.com/IvanYachmenov/code_sharing_app',
         demo: '#'
     },
-    'real-time-chat': {
+    'insurance-company-oop': {
+        title: 'Insurance Company',
+        media: [
+            { type: 'image', src: 'media/projects/p3/insurance.png', class: 'gallery-media-constrained' }
+        ],
+        description: 'Java-based insurance company domain model — university course project. Implemented from a provided PDF specification and baseline UML model. Applies OOP principles and TDD with unit tests. Validates required behavior through tests. Library only, no UI or persistence.',
+        technologies: 'Java, OOP, Maven, JUnit',
+        withoutFeatures: true,
+        github: 'https://github.com/IvanYachmenov/insurance_company',
+        demo: '#'
+    },
+    'realtime-chat-app': {
         title: 'Real-time Chat',
         media: [
-            { type: 'image', src: 'media/assets/table_pic3.jpeg' },
-            { type: 'image', src: 'media/assets/table_pic4.jpeg' }
+            { type: 'image', src: 'media/projects/p4/avatar.png' }
         ],
-        description: 'Real-time messaging application with instant communication, modern UI, and advanced features. Built with modern web technologies for seamless user experience and reliable message delivery.',
-        technologies: 'React, TypeScript, Node.js, WebSocket, Socket.io, Express, MongoDB',
-        features: 'Real-time messaging, user authentication, online/offline status, message history, file sharing, notifications, responsive design, group chats',
+        description: 'Real-time chat application (MERN, Socket.IO). Secure authentication, group chats, online presence, typing indicators, instant messaging. Emphasis on reliable real-time delivery and scalable architecture for persistent connections.',
+        technologies: 'React, Node.js, Express, MongoDB, Socket.IO',
+        features: 'Group chats, online presence, typing indicators, instant messaging, secure authentication, scalable architecture',
         github: 'https://github.com/IvanYachmenov/real-time-chat',
         demo: '#'
     }
@@ -102,7 +115,7 @@ function openPopup(project) {
                 const img = document.createElement('img');
                 img.src = media.src;
                 img.alt = project.title;
-                img.className = 'gallery-media';
+                img.className = media.class ? 'gallery-media ' + media.class : 'gallery-media';
                 mediaElement.appendChild(img);
             }
             
@@ -115,8 +128,16 @@ function openPopup(project) {
 
     popupTitle.textContent = project.title;
     popupDesc.textContent = project.description;
-    popupTech.textContent = project.technologies;
-    popupFeatures.textContent = project.features;
+    const techRow = popupTech.closest('p');
+    const featuresRow = popupFeatures.closest('p');
+    techRow.style.display = '';
+    popupTech.textContent = project.technologies || '';
+    if (project.withoutFeatures) {
+        featuresRow.style.display = 'none';
+    } else {
+        featuresRow.style.display = '';
+        popupFeatures.textContent = project.features || '';
+    }
     githubLink.href = project.github;
     
     demoLink.href = '#';
