@@ -99,30 +99,33 @@ function openPopup(project, projectId) {
     currentMediaIndex = 0;
 
     galleryTrack.innerHTML = '';
-    
+    let firstMediaElement = null;
+
     if (currentProjectMedia.length > 0) {
         currentProjectMedia.forEach((media, index) => {
             const mediaElement = document.createElement('div');
             mediaElement.className = 'gallery-item';
             mediaElement.dataset.index = index;
-            
+
             if (media.type === 'video') {
                 const video = document.createElement('video');
                 video.src = media.src;
                 video.controls = true;
                 video.className = 'gallery-media';
                 mediaElement.appendChild(video);
+                if (index === 0) firstMediaElement = video;
             } else {
                 const img = document.createElement('img');
                 img.src = media.src;
                 img.alt = project.title;
                 img.className = media.class ? 'gallery-media ' + media.class : 'gallery-media';
                 mediaElement.appendChild(img);
+                if (index === 0) firstMediaElement = img;
             }
-            
+
             galleryTrack.appendChild(mediaElement);
         });
-        
+
         galleryTotal.textContent = currentProjectMedia.length;
         updateGalleryDisplay();
     }
@@ -140,20 +143,55 @@ function openPopup(project, projectId) {
         popupFeatures.textContent = project.features || '';
     }
     githubLink.href = project.github;
-    
+
     demoLink.href = '#';
     demoLink.classList.add('disabled');
     demoLink.setAttribute('title', 'Currently unavailable');
-    demoLink.addEventListener('click', (e) => {
-        e.preventDefault();
-    });
+    demoLink.onclick = (e) => e.preventDefault();
 
-    popup.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    const showPopup = () => {
+        currentMediaIndex = 0;
+        const track = popup.querySelector('.gallery-track');
+        if (track) {
+            track.style.transform = 'translateX(0)';
+            const items = track.querySelectorAll('.gallery-item');
+            items.forEach((item, i) => item.classList.toggle('active', i === 0));
+        }
+        const galleryCurrent = popup.querySelector('.gallery-current');
+        if (galleryCurrent) galleryCurrent.textContent = '1';
+        const popupContent = popup.querySelector('.popup-content');
+        if (popupContent) popupContent.scrollTop = 0;
+        popup.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                popup.classList.add('active');
+                if (popupContent) popupContent.scrollTop = 0;
+            });
+        });
+    };
 
-    setTimeout(() => {
-        popup.classList.add('active');
-    }, 10);
+    if (firstMediaElement) {
+        const onReady = () => {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(showPopup);
+            });
+        };
+        if (firstMediaElement.tagName === 'IMG') {
+            if (firstMediaElement.complete) {
+                onReady();
+            } else {
+                firstMediaElement.addEventListener('load', onReady);
+                firstMediaElement.addEventListener('error', onReady);
+            }
+        } else {
+            firstMediaElement.addEventListener('loadeddata', onReady);
+            firstMediaElement.addEventListener('error', onReady);
+            setTimeout(onReady, 500);
+        }
+    } else {
+        showPopup();
+    }
 }
 
 function updateGalleryDisplay() {
@@ -193,6 +231,9 @@ function prevMedia() {
 function closePopup() {
     sessionStorage.removeItem('lastOpenProject');
     const popup = document.querySelector('.popup-wrapper');
+    const popupContent = popup.querySelector('.popup-content');
+    if (popupContent) popupContent.scrollTop = 0;
+    currentMediaIndex = 0;
 
     popup.classList.remove('active');
     popup.classList.add('closing');
@@ -201,7 +242,7 @@ function closePopup() {
         popup.style.display = 'none';
         popup.classList.remove('closing');
         document.body.style.overflow = 'auto';
-    }, 300);
+    }, 800);
 }
 
 document.querySelectorAll('.close-btn').forEach(btn => {

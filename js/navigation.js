@@ -22,7 +22,7 @@ class Navigation {
 
     setupNavigation() {
         const navLinks = document.querySelectorAll('#navbar a');
-        
+
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -42,49 +42,41 @@ class Navigation {
             const html = await response.text();
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = html;
-            
-            this.mainContainer.innerHTML = '';
-            
+
             const section = tempDiv.querySelector('section');
             const footer = tempDiv.querySelector('footer');
-            
+
+            this.mainContainer.innerHTML = '';
+
             if (section) {
                 this.mainContainer.appendChild(section);
-                setTimeout(() => {
-                    section.classList.add('active');
-                }, 10);
+                setTimeout(() => section.classList.add('active'), 10);
             }
-            
+
             const existingFooter = document.querySelector('footer');
             if (existingFooter && sectionId !== 'contacts') {
                 existingFooter.classList.remove('active');
                 existingFooter.style.display = 'none';
                 existingFooter.remove();
             }
-            
+
             if (footer && sectionId === 'contacts') {
                 document.body.appendChild(footer);
-                setTimeout(() => {
-                    footer.classList.add('active');
-                }, 10);
+                setTimeout(() => footer.classList.add('active'), 10);
             }
-            
+
             this.loadedSections.add(sectionId);
             this.currentSection = sectionId;
-            
+
             if (sectionId === 'home') {
                 window.shaderInitialized = false;
-                setTimeout(() => {
-                    this.initShader();
-                }, 300);
+                setTimeout(() => this.initShader(), 300);
             } else {
                 window.shaderInitialized = false;
             }
-            
+
             if (sectionId === 'portfolio') {
-                setTimeout(() => {
-                    this.initPopup();
-                }, 100);
+                setTimeout(() => this.initPopup(), 100);
             }
         } catch (error) {
             console.error(`Error loading section ${sectionId}:`, error);
@@ -163,6 +155,10 @@ class Navigation {
                         }
                     });
                 });
+                const projectId = sessionStorage.getItem('lastOpenProject');
+                if (projectId && typeof projectsData !== 'undefined' && projectsData[projectId]) {
+                    setTimeout(() => openPopup(projectsData[projectId], projectId), 200);
+                }
             }
         }
     }
